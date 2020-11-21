@@ -8,7 +8,7 @@ namespace RSA_WF{
     class RSA {
         Random random = new Random();
 
-        public long[,] generateKeyParis() {
+        public UserKey generateKeyParis() {
             long p = generateRandomPrim(0, 1000);
             long q = generateRandomPrim(0, 1000);
             long n = p * q;
@@ -33,7 +33,7 @@ namespace RSA_WF{
             result[1, 0] = d;
             result[1, 1] = n;
 
-            return result;
+            return new UserKey(e,d,n);
         }
 
         public long generateRandomPrim(int min, int max) {
