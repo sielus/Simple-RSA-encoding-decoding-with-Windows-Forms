@@ -38,6 +38,7 @@ namespace RSA_WF
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.updateKeys = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -76,22 +77,25 @@ namespace RSA_WF
             this.button4.TabIndex = 3;
             this.button4.Text = "Load Keys";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.loadKeysClick);
             // 
             // privateKeyTextBox
             // 
             this.privateKeyTextBox.Location = new System.Drawing.Point(133, 32);
             this.privateKeyTextBox.Multiline = true;
             this.privateKeyTextBox.Name = "privateKeyTextBox";
-            this.privateKeyTextBox.Size = new System.Drawing.Size(182, 202);
+            this.privateKeyTextBox.Size = new System.Drawing.Size(182, 175);
             this.privateKeyTextBox.TabIndex = 4;
+            this.privateKeyTextBox.TextChanged += new System.EventHandler(this.checkForNumbers);
             // 
             // publicKeyTextBox
             // 
             this.publicKeyTextBox.Location = new System.Drawing.Point(343, 32);
             this.publicKeyTextBox.Multiline = true;
             this.publicKeyTextBox.Name = "publicKeyTextBox";
-            this.publicKeyTextBox.Size = new System.Drawing.Size(182, 202);
+            this.publicKeyTextBox.Size = new System.Drawing.Size(182, 175);
             this.publicKeyTextBox.TabIndex = 5;
+            this.publicKeyTextBox.TextChanged += new System.EventHandler(this.checkForNumbers);
             // 
             // label1
             // 
@@ -111,11 +115,23 @@ namespace RSA_WF
             this.label2.TabIndex = 7;
             this.label2.Text = "Public key";
             // 
+            // updateKeys
+            // 
+            this.updateKeys.Enabled = false;
+            this.updateKeys.Location = new System.Drawing.Point(450, 214);
+            this.updateKeys.Name = "updateKeys";
+            this.updateKeys.Size = new System.Drawing.Size(75, 23);
+            this.updateKeys.TabIndex = 8;
+            this.updateKeys.Text = "Update keys";
+            this.updateKeys.UseVisualStyleBackColor = true;
+            this.updateKeys.Click += new System.EventHandler(this.updateKeysClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 249);
+            this.Controls.Add(this.updateKeys);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.publicKeyTextBox);
@@ -144,6 +160,7 @@ namespace RSA_WF
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button updateKeys;
     }
 }
 
