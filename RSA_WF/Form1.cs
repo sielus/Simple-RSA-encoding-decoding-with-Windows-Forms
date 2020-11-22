@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,15 @@ using System.Windows.Forms;
 
 namespace RSA_WF
 {
-    public partial class Form1 : Form{
-        
+    public partial class Form1 : Form {
         Controllers controllers = new Controllers();
-        public Form1(){
+
+        public Form1() {
             InitializeComponent();
+            
         }
 
-        private void generateKeysOnClick(object sender, EventArgs e){
+        private void generateKeysOnClick(object sender, EventArgs e) {
             controllers.key = controllers.generateKeys(saveFileDialog1);
             printAllKeysInTextBooks();
         }
@@ -27,14 +29,26 @@ namespace RSA_WF
         }
 
         private void updateKeysClick(object sender, EventArgs e) {
-            controllers.updateKeys(privateKeyTextBox,publicKeyTextBox,updateKeys);
+            controllers.updateKeys(privateKeyTextBox, publicKeyTextBox, updateKeys);
+            
+            if (controllers.key.checkIfPrivateKeyExist()) {
+                decryptButton.Enabled = true;
+            } else {
+                decryptButton.Enabled = false;
+            }
+
+            if (controllers.key.checkIfPublicKeyExist()) {
+                encryptButton.Enabled = true;
+            } else {
+                encryptButton.Enabled = false;
+            }
         }
 
 
         private void loadKeysClick(object sender, EventArgs e) {
-            controllers.getFilePath(openFileDialog1,"public");
+            controllers.getKeyFilePath(openFileDialog1, "public");
             printAllKeysInTextBooks();
-            controllers.getFilePath(openFileDialog1, "private");
+            controllers.getKeyFilePath(openFileDialog1, "private");
             printAllKeysInTextBooks();
         }
 
@@ -52,7 +66,29 @@ namespace RSA_WF
 
             printInPublicKeyTextBoox(controllers.key.getPublicKey()[0].ToString() + "\r\n" +
                 controllers.key.getPublicKey()[1].ToString());
+
+            if (controllers.key.checkIfPrivateKeyExist()) {
+                decryptButton.Enabled = true;
+            }
+
+            if (controllers.key.checkIfPublicKeyExist()) {
+                encryptButton.Enabled = true;
+            }
+        }
+
+        private void encryptClick(object sender, EventArgs e) {
+            controllers.encryptFile(openFileDialog1, saveFileDialog1);
+
+
+        }
+
+        private void decryptClick(object sender, EventArgs e) {
+            controllers.decryptFile(openFileDialog1, saveFileDialog1);
+            
         }
     }
+
+                            
+        
 
 }

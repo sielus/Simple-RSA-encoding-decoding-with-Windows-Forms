@@ -22,6 +22,7 @@ namespace RSA_WF {
         public long[] getPublicKey() {
             return publicKey;
         }
+
         public long[] getPrivateKey() {
             return privateKey;
         }
@@ -30,6 +31,7 @@ namespace RSA_WF {
             this.publicKey[0] = e;
             this.publicKey[1] = n;
         }
+
         public void updatePrivateKey(long d, long n) {
             this.privateKey[0] = d;
             this.privateKey[1] = n;
@@ -48,6 +50,23 @@ namespace RSA_WF {
         public void printKeys() {
             Console.WriteLine("Public: " + publicKey[0] + " "+ publicKey[1] + "\n" +
                 "Private: " + privateKey[0] + " " + privateKey[1]);
+        }
+
+        public bool checkIfPublicKeyExist() {
+            long[] key = getPublicKey();
+            if (key[0] != 0 && key[1] != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public bool checkIfPrivateKeyExist() {
+            long[] key = getPrivateKey();
+            if (key[0] != 0 && key[1] != 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
