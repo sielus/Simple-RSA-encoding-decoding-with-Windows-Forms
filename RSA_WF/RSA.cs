@@ -8,7 +8,7 @@ namespace RSA_WF{
     class RSA {
         Random random = new Random();
 
-        public long[,] generateKeyParis() {
+        public UserKey generateKeyParis() {
             long p = generateRandomPrim(0, 1000);
             long q = generateRandomPrim(0, 1000);
             long n = p * q;
@@ -26,14 +26,7 @@ namespace RSA_WF{
             if (d < 0) {
                 d = d + phi;
             }
-
-            long[,] result = new long[2, 2];
-            result[0, 0] = e;
-            result[0, 1] = n;
-            result[1, 0] = d;
-            result[1, 1] = n;
-
-            return result;
+            return new UserKey(e,d,n);
         }
 
         public long generateRandomPrim(int min, int max) {
@@ -92,6 +85,37 @@ namespace RSA_WF{
                 b = x % b;
             }
             return a;
+        }
+        long modulo(long a, long b, long c) {
+            long x = 1;
+            long y = a;
+            while (b > 0) {
+                if (b % 2 == 1) {
+                    x = (x * y) % c;
+                }
+                y = (y * y) % c;
+                b /= 2;
+            }
+            return (long)x % c;
+        }
+        public long[] encrypt(byte[] bytes, long[] publicKey) {
+            long key = publicKey[0];
+            long n = publicKey[1];
+            long[] inFutureEncrypt = new long[bytes.Length];
+            for (int index = 0; index < bytes.Length; index++) {
+                inFutureEncrypt[index] = modulo(bytes[index], key, n);
+            }
+            return inFutureEncrypt;
+        }
+        public byte[] decrypt(long[] enscrypted, long[] privateKey) {
+            long key = privateKey[0];
+            long n = privateKey[1];
+            byte[] descrypt = new byte[enscrypted.Length];
+            for (int index = 0; index < enscrypted.Length; index++) {
+                descrypt[index] = (byte)modulo(enscrypted[index], key, n);
+               //Console.WriteLine(modulo(enscrypted[index], key, n));
+            }
+            return descrypt;
         }
     }
 }
