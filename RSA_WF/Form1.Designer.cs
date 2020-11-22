@@ -39,6 +39,7 @@ namespace RSA_WF
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.updateKeys = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // button1
@@ -126,6 +127,10 @@ namespace RSA_WF
             this.updateKeys.UseVisualStyleBackColor = true;
             this.updateKeys.Click += new System.EventHandler(this.updateKeysClick);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +166,7 @@ namespace RSA_WF
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button updateKeys;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

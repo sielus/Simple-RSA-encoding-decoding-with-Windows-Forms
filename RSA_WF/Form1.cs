@@ -19,12 +19,7 @@ namespace RSA_WF
 
         private void generateKeysOnClick(object sender, EventArgs e){
             controllers.key = controllers.generateKeys(saveFileDialog1);
-
-            privateKeyTextBox.Text = controllers.key.getPrivateKey()[0].ToString() + "\r\n" + 
-                controllers.key.getPrivateKey()[1].ToString();
-
-            publicKeyTextBox.Text = controllers.key.getPublicKey()[0].ToString() + "\r\n" + 
-                controllers.key.getPrivateKey()[1].ToString();
+            printAllKeysInTextBooks();
         }
 
         private void checkForNumbers(object sender, EventArgs e) {
@@ -37,7 +32,27 @@ namespace RSA_WF
 
 
         private void loadKeysClick(object sender, EventArgs e) {
-            controllers.key.printKeys();
+            controllers.getFilePath(openFileDialog1,"public");
+            printAllKeysInTextBooks();
+            controllers.getFilePath(openFileDialog1, "private");
+            printAllKeysInTextBooks();
+        }
+
+        void printInPrivateKeyTextBoox(String text) {
+            privateKeyTextBox.Text = text;
+        }
+
+        void printInPublicKeyTextBoox(String text) {
+            publicKeyTextBox.Text = text;
+        }
+
+        void printAllKeysInTextBooks() {
+            printInPrivateKeyTextBoox(controllers.key.getPrivateKey()[0].ToString() + "\r\n" +
+                controllers.key.getPrivateKey()[1].ToString());
+
+            printInPublicKeyTextBoox(controllers.key.getPublicKey()[0].ToString() + "\r\n" +
+                controllers.key.getPublicKey()[1].ToString());
         }
     }
+
 }

@@ -26,13 +26,6 @@ namespace RSA_WF{
             if (d < 0) {
                 d = d + phi;
             }
-
-            long[,] result = new long[2, 2];
-            result[0, 0] = e;
-            result[0, 1] = n;
-            result[1, 0] = d;
-            result[1, 1] = n;
-
             return new UserKey(e,d,n);
         }
 
