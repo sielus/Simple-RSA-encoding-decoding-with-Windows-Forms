@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace RSA_WF
@@ -8,9 +7,9 @@ namespace RSA_WF
         private RSA rsa = new RSA();
         public UserKey key = new UserKey();
         FileManager fileManager = new FileManager();
-        private Form1 form1;
+        private MainForm form1;
 
-        public Controllers(Form1 form1) {
+        public Controllers(MainForm form1) {
             this.form1 = form1;
         }
 

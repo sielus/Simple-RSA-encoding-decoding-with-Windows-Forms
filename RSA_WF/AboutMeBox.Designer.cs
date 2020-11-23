@@ -1,6 +1,6 @@
 ﻿
 namespace RSA_WF {
-    partial class AboutBox1 {
+    partial class AboutMeBox {
         /// <summary>
         /// Required designer variable.
         /// </summary>

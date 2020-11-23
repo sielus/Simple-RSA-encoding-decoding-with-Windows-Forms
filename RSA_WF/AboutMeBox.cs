@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSA_WF {
-    partial class AboutBox1 : Form {
-        public AboutBox1() {
+    partial class AboutMeBox : Form {
+        public AboutMeBox() {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
