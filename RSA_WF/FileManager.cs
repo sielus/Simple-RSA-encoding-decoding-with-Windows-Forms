@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace RSA_WF {
     class FileManager {
          public void getKeyFilePath(System.Windows.Forms.OpenFileDialog openFileDialog, String title,UserKey key) {
-            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.FileName = "";
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
             openFileDialog.FilterIndex = 2;
             openFileDialog.Title = "Load " + title + " key";
@@ -52,9 +52,9 @@ namespace RSA_WF {
             }
         }
 
-        public String getPathToSaveFile(System.Windows.Forms.SaveFileDialog saveFileDialog1, RSA rsa, UserKey key,String fileName) {
+        public String getPathToSaveFile(System.Windows.Forms.SaveFileDialog saveFileDialog1, RSA rsa, UserKey key,String fileName,String filter) {
             saveFileDialog1.FileName = fileName;
-            //  saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.Filter = filter;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
                 return saveFileDialog1.FileName;
             } else {
@@ -82,13 +82,11 @@ namespace RSA_WF {
             openFileDialog1.FileName = fileTitle;
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
-            String fileName = openFileDialog1.SafeFileName;
             return openFileDialog1;
         }
 
         public byte[] getBytesFromFile(String path) {
-            byte[] data = System.IO.File.ReadAllBytes(path);
-            return data;
+            return System.IO.File.ReadAllBytes(path);
         }
 
         public void createFileFromByte(byte[] data,String path) {
@@ -96,13 +94,16 @@ namespace RSA_WF {
         }
 
         public void saveDataToFile(String path,long[] longData,String fileName) {
-            String[] data = new string[longData.Length + 1];
-            for(int index = 0; index < longData.Length; index++) {
-                data[index] = Convert.ToString(longData[index]);
+            if(path != null) {
+                String[] data = new string[longData.Length + 1];
+                for(int index = 0; index < longData.Length; index++) {
+                    data[index] = Convert.ToString(longData[index]);
+                }
+                data[longData.Length] = fileName;
+                System.IO.File.WriteAllLines(path, data);
+                data = null;
+                GC.Collect();
             }
-            data[longData.Length] = fileName;
-             
-            System.IO.File.WriteAllLines(path, data);
         }
 
         public long[] loadDataFromFile(String path) {
@@ -116,7 +117,7 @@ namespace RSA_WF {
                     index++;
                 }
             }
-               
+            GC.Collect();
             return data;
         }
 

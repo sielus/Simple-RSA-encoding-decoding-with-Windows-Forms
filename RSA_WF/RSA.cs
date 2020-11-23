@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace RSA_WF{
     class RSA {
         Random random = new Random();
-
         public UserKey generateKeyParis() {
             long p = generateRandomPrim(0, 1000);
             long q = generateRandomPrim(0, 1000);
@@ -98,23 +97,32 @@ namespace RSA_WF{
             }
             return (long)x % c;
         }
-        public long[] encrypt(byte[] bytes, long[] publicKey) {
+        public long[] encrypt(byte[] bytes, long[] publicKey, Form1 form1) {
             long key = publicKey[0];
             long n = publicKey[1];
             long[] inFutureEncrypt = new long[bytes.Length];
+            form1.setUpProgressMax(bytes.Length);
             for (int index = 0; index < bytes.Length; index++) {
                 inFutureEncrypt[index] = modulo(bytes[index], key, n);
+                form1.setUpProgress(index);
             }
+            
+            form1.setUpProgress(0);
+            key = 0;
+            n = 0;
             return inFutureEncrypt;
         }
-        public byte[] decrypt(long[] enscrypted, long[] privateKey) {
+        public byte[] decrypt(long[] enscrypted, long[] privateKey, Form1 form1) {
             long key = privateKey[0];
             long n = privateKey[1];
             byte[] descrypt = new byte[enscrypted.Length];
+            form1.setUpProgressMax(enscrypted.Length);
             for (int index = 0; index < enscrypted.Length; index++) {
                 descrypt[index] = (byte)modulo(enscrypted[index], key, n);
-               //Console.WriteLine(modulo(enscrypted[index], key, n));
+                form1.setUpProgress(index);
+                //Console.WriteLine(modulo(enscrypted[index], key, n));
             }
+            form1.setUpProgress(0);
             return descrypt;
         }
     }

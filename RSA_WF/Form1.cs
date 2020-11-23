@@ -6,20 +6,21 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSA_WF
 {
     public partial class Form1 : Form {
-        Controllers controllers = new Controllers();
-
+        Controllers controllers;
         public Form1() {
+
             InitializeComponent();
-            
+            controllers = new Controllers(this);
         }
 
-        private void generateKeysOnClick(object sender, EventArgs e) {
+    private void generateKeysOnClick(object sender, EventArgs e) {
             controllers.key = controllers.generateKeys(saveFileDialog1);
             printAllKeysInTextBooks();
         }
@@ -43,7 +44,6 @@ namespace RSA_WF
                 encryptButton.Enabled = false;
             }
         }
-
 
         private void loadKeysClick(object sender, EventArgs e) {
             controllers.getKeyFilePath(openFileDialog1, "public");
@@ -78,14 +78,25 @@ namespace RSA_WF
 
         private void encryptClick(object sender, EventArgs e) {
             controllers.encryptFile(openFileDialog1, saveFileDialog1);
-
-
         }
 
         private void decryptClick(object sender, EventArgs e) {
             controllers.decryptFile(openFileDialog1, saveFileDialog1);
-            
         }
+
+        private void aboutAuthorToolStripMenuItem_Click(object sender, EventArgs e) {
+            AboutBox1 about = new AboutBox1();
+            about.ShowDialog();
+        }  
+
+        public void setUpProgress(int progress) {
+            progressBar.Invoke((MethodInvoker)(() => progressBar.Value = progress));
+        }
+
+        public void setUpProgressMax(int max) {
+            progressBar.Invoke((MethodInvoker)(() => progressBar.Maximum = max));
+          }
+
     }
 
                             
