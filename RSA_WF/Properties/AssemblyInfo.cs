@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RSA_WF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("My first application written with C# and Windows Form")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Sielus | DevsDreamStudio")]
 [assembly: AssemblyProduct("RSA_WF")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
