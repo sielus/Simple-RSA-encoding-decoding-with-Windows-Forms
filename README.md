@@ -1,23 +1,17 @@
 # Simple-RSA-encoding-decoding-in-C-with-Windows-Forms
 
 # How to use it?
-How to encode file?
-1) Generate your keys (you can save them to files)
+**How to encode file?**
+1) Generate your keys (you can save them to files) or load your keys from file
 2) Chose file to encode.
 3) Save encoded file. 
 
+**How to decode file?**
+1) Load your private key
+2) Select file to decrypt 
+3) Save decrypted file 
 
-**Siren will be turn on, will send message (like fire or burglary) and call to chosen user on his phone!**
+![MainMenu](https://i.ibb.co/164rVNd/1.png)
 
-However, if the alarm detects :
-- Lower temp than 3 degrees
-- Disabled 230V AC
 
-**Only specified message will be send**
-
-## PCB 
-![PCB](https://i.postimg.cc/SRz5K0Xf/2.png)
-## Schema
-![Schema](https://i.postimg.cc/4dyqrHsM/1.png)
-
-*I'm not a professional C programmer but I hope, code is not looking too bad!*
+*I'm not a professional C# programmer but I hope, code is not looking too bad!*
