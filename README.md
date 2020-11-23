@@ -1,4 +1,4 @@
-# Simple-RSA-encoding-decoding-in-C-with-Windows-Forms
+# Simple-RSA-encoding-decoding-in-C#-with-Windows-Forms
 
 # How to use it?
 **How to encode file?**
