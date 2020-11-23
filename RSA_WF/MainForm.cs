@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSA_WF
 {
-    public partial class Form1 : Form {
+    public partial class MainForm : Form {
         Controllers controllers;
-        public Form1() {
+        public MainForm() {
 
             InitializeComponent();
             controllers = new Controllers(this);
@@ -85,7 +76,7 @@ namespace RSA_WF
         }
 
         private void aboutAuthorToolStripMenuItem_Click(object sender, EventArgs e) {
-            AboutBox1 about = new AboutBox1();
+            AboutMeBox about = new AboutMeBox();
             about.ShowDialog();
         }  
 
@@ -96,10 +87,5 @@ namespace RSA_WF
         public void setUpProgressMax(int max) {
             progressBar.Invoke((MethodInvoker)(() => progressBar.Maximum = max));
           }
-
     }
-
-                            
-        
-
 }

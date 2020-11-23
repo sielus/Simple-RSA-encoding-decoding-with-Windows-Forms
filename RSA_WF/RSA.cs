@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSA_WF{
     class RSA {
@@ -97,7 +93,7 @@ namespace RSA_WF{
             }
             return (long)x % c;
         }
-        public long[] encrypt(byte[] bytes, long[] publicKey, Form1 form1) {
+        public long[] encrypt(byte[] bytes, long[] publicKey, MainForm form1) {
             long key = publicKey[0];
             long n = publicKey[1];
             long[] inFutureEncrypt = new long[bytes.Length];
@@ -112,7 +108,7 @@ namespace RSA_WF{
             n = 0;
             return inFutureEncrypt;
         }
-        public byte[] decrypt(long[] enscrypted, long[] privateKey, Form1 form1) {
+        public byte[] decrypt(long[] enscrypted, long[] privateKey, MainForm form1) {
             long key = privateKey[0];
             long n = privateKey[1];
             byte[] descrypt = new byte[enscrypted.Length];

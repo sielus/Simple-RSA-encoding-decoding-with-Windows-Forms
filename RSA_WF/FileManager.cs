@@ -31,7 +31,6 @@ namespace RSA_WF {
             string line;
             long parsedValue;
             long[] data = new long[2];
-            // Read the file and display it line by line.  
             System.IO.StreamReader file = new System.IO.StreamReader(@path);
             if (System.IO.File.ReadAllLines(path).Count() == 2) {
                 while ((line = file.ReadLine()) != null) {
@@ -45,7 +44,6 @@ namespace RSA_WF {
                     key.setUpPrivateKey(data[0], data[1]);
                 } else if (title.Equals("public")) {
                     key.setUpPublicKey(data[0], data[1]);
-                    //key.updatePrivateKey(0, 0);
                 }
             } else {
                 Controllers.showErrorBox("Error", "Wrong key file");
@@ -76,7 +74,6 @@ namespace RSA_WF {
         }
 
         public OpenFileDialog getFilePath(OpenFileDialog openFileDialog1,String title, String filter,String fileTitle) { 
-            openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = filter;
             openFileDialog1.Title = title;
             openFileDialog1.FileName = fileTitle;
